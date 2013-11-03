@@ -175,16 +175,40 @@
           },
 
           dropped:function(e){
+            if (!dragging){
+              var locked = false;
+              var i = 0;
 
-            if (dragging){
-              dragged.node.data.taken = dragged.node.data.taken
-            } else {
-              dragged.node.data.taken = !dragged.node.data.taken
-              that.findNextClasses(dragged.node)
+              if(!dragged.node.data.taken) {
+                var parents = particleSystem.getEdgesTo(dragged.node);
 
+                while(i < parents.length) {
+                   if(!parents[i].source.data.taken) {
+                       locked = true;
+                       break;
+                   }
+
+                   i++;
+                }
+              } else {
+                var children = particleSystem.getEdgesFrom(dragged.node);
+
+                while(i < children.length) {
+                    if(children[i].target.data.taken) {
+                        locked = true;
+                        break;
+                    }
+
+                    i++;
+                }
+              }
+
+              if(!locked) {
+                dragged.node.data.taken = !dragged.node.data.taken;
+                that.findNextClasses(dragged.node);
+              }
             }
 
-            
             if (dragged===null || dragged.node===undefined) return
             if (dragged.node !== null) dragged.node.fixed = false
             dragged.node.tempMass = 1000
