@@ -59,12 +59,12 @@
         })
 
         particleSystem.eachNode(function(node, pt){
-          
+         
           // node: {mass:#, p:{x,y}, name:"", data:{}}
           // pt:   {x:#, y:#}  node position in screen coords
-          
-
-          // determine the box size and round off the coords if we'll be 
+         
+ 
+          // determine the box size and round off the coords if we'll be
           // drawing a text label (awful alignment jitter otherwise...)
           var w = ctx.measureText(node.data.label||"").width + 6
           var label = node.data.label
@@ -74,30 +74,27 @@
           }else{
             label = null
           }
-          
-          // clear any edges below the text label
-          // ctx.fillStyle = 'rgba(255,255,255,.6)'
-          // ctx.fillRect(pt.x-w/2, pt.y-7, w,14)
-
-
-          ctx.clearRect(pt.x-w/2, pt.y-7, w,14)
-
-          
-
+         
+          if(node.data.taken) {
+            ctx.fillStyle = 'red'
+          } else {
+            ctx.fillStyle = 'gray'
+          }
+ 
+          ctx.fillRect(pt.x - w/2, pt.y - 7, w,14)
+ 
           // draw the text
           if (label){
             ctx.font = "bold 11px Arial"
             ctx.textAlign = "center"
-            
+           
             // if (node.data.region) ctx.fillStyle = palette[node.data.region]
             // else ctx.fillStyle = "#888888"
-            ctx.fillStyle = "#888888"
-
-            // ctx.fillText(label||"", pt.x, pt.y+4)
+            ctx.fillStyle = "#FFFFFF"            
+ 
             ctx.fillText(label||"", pt.x, pt.y+4)
           }
-        })    		
-        
+        })            
       },
       
       initMouseHandling:function(){
@@ -161,39 +158,27 @@
     sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
 
     // add some nodes to the graph and watch it go...
-    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", mass:.25})
+    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", mass:.25, taken: true})
     sys.addNode('cse2221', {label: "CSE 2221: Software I", mass:.5})
- sys.addNode('cse2231', {label: "CSE 2231: Software II", mass:.25})
- sys.addNode('cse2321', {label: "CSE 2321: Foundations I", mass:.25})
-
-sys.addNode('cse2331', {label: "CSE 2331: Foundations II", mass:.25})
-
-sys.addNode('cse2421', {label: "CSE 2421: Systems I", mass:.25})
-
-sys.addNode('cse2431', {label: "CSE 2431: Systems II", mass:.25})
-
-sys.addNode('ece2000', {label: "ECE 2000: Electrical and Computer Engineering I", mass:.25})
-
-sys.addNode('ece2100', {label: "ECE 2100: Electrical and Computer Engineering II", mass:.25})
-
-
-
+    sys.addNode('cse2231', {label: "CSE 2231: Software II", mass:.25})
+    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", mass:.25})
+    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", mass:.25})
+    sys.addNode('cse2421', {label: "CSE 2421: Systems I", mass:.25})
+    sys.addNode('cse2431', {label: "CSE 2431: Systems II", mass:.25})
+    sys.addNode('ece2000', {label: "ECE 2000: Electrical and Computer Engineering I", mass:.25})
+    sys.addNode('ece2100', {label: "ECE 2100: Electrical and Computer Engineering II", mass:.25})
 
     sys.addEdge('cse1223', 'cse2221')
     sys.addEdge('cse2221', 'cse2231')
-    
-sys.addEdge('cse2221', 'cse2321')
-
-sys.addEdge('cse2231', 'cse2331')
-
-sys.addEdge('cse2321', 'cse2331')
-
-sys.addEdge('cse2231', 'cse2421')
-sys.addEdge('cse2321', 'cse2421')
-sys.addEdge('cse2331', 'cse2431')
-sys.addEdge('cse2421', 'cse2431')
-sys.addEdge('cse2221', 'ece2000')
-sys.addEdge('ece2000', 'ece2100')
+    sys.addEdge('cse2221', 'cse2321')
+    sys.addEdge('cse2231', 'cse2331')
+    sys.addEdge('cse2321', 'cse2331')
+    sys.addEdge('cse2231', 'cse2421')
+    sys.addEdge('cse2321', 'cse2421')
+    sys.addEdge('cse2331', 'cse2431')
+    sys.addEdge('cse2421', 'cse2431')
+    sys.addEdge('cse2221', 'ece2000')
+    sys.addEdge('ece2000', 'ece2100')
     // or, equivalently:
     //
     // sys.graft({
