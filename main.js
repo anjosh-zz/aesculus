@@ -373,25 +373,38 @@
 
     sys.addNode('cse5351', {label: "CSE 5351: Cryptography", y: 7, x: 21, taken: false, canTake: false})
 
+      sys.graft({
+        nodes:{
 
-  sys.graft({
-      nodes:{}, 
-      edges:{
-        cse1223:{cse2221:{}},
-        math1161:{cse2321:{}, math2162:{}},
-        math2162:{ece2000:{}},
-        cse2221:{cse2231:{}, cse2321:{}, ece2000:{}},
-        cse2231:{cse2331:{}, cse2421:{}, cse2501:{}, cse3241:{}, cse3341:{}, cse3421:{}, cse390x:{},cse4251:{}, cse4252:{}, cse4253:{},cse4255:{},cse4254:{}, cse5361:{},cse5441:{}, cse4471:{}},
-        cse2321:{cse2331:{}, cse2421:{}, cse2501:{}, cse3241:{}, cse390x:{}, cse5441:{}, cse4471:{}},
-        cse2331:{cse2431:{}},
-        cse2421:{cse2431:{}},
-        phys1250:{ece2000:{}},
-        ece2000:{ece2100:{}, cse3421:{}},
-        engl2367:{cse2501:{}},
-        engl1110:{engl2367:{}},
-        cse2501:{cse5915:{}, cse5911:{}, cse5913:{}, cse5914:{}, cse5912:{}},
-        eng1181:{eng1182:{}},
-        }
+        },
+        edges:{
+            cse1223:{cse2221:{}},
+            math1161:{cse2321:{}, math2162:{}},
+            math2162:{ece2000:{}},
+            cse2221:{cse2231:{}, cse2321:{}, ece2000:{}},
+            cse2231:{cse2331:{}, cse2421:{}, cse2501:{}, cse3241:{}, cse3341:{}, cse3421:{}, cse390x:{},cse4251:{}, cse4252:{}, cse4253:{},cse4255:{},cse4254:{}, cse5361:{},cse5441:{}},
+            cse2321:{cse2331:{},cse2421:{}, cse2501:{}, cse3241:{}, cse390x:{}, cse5441:{}},
+            cse2331:{cse2431:{},cse3321:{},cse3341:{},cse3521:{},cse5245:{},cse5524:{},cse4255:{},cse5341:{},cse5351:{},cse5243:{}},
+            cse2421:{cse2431:{},cse3421:{},cse3461:{},cse390x:{},cse5432:{},cse4255:{},cse5441:{},cse5341:{}},
+            cse2431:{ cse5234:{},
+                      cse5434:{},
+                      cse5433:{}},
+            phys1250:{ece2000:{}},
+            ece2000:{ece2100:{}, cse3421:{}},
+            engl2367:{cse2501:{},cse390x:{}},
+            engl1110:{engl2367:{}},
+            cse2501:{cse5915:{}, cse5911:{}, cse5913:{}, cse5914:{}, cse5912:{}},
+            eng1181:{eng1182:{}},
+            cse3241:{cse5915:{},cse5242:{},cse3232:{},cse5243:{}},
+            cse3231:{cse5911:{}},
+            cse3461:{cse5473:{},cse5463:{},cse5462:{},cse5472:{}},
+            cse3341:{cse5343:{},cse5345:{}},
+            cse3541:{cse5912:{},cse5913:{},cse5545:{}},
+            cse3521:{cse5914:{},cse5526:{},cse5522:{},cse5523:{},cse5525:{}},
+            math2568:{cse5361:{},cse5543:{},cse5441:{},cse5542:{},math4580:{}},
+            stat3470:{cse5525:{},cse5351:{},cse5542:{},cse2331:{}},
+            math3345:{math4580:{}}
+      }
 
     })
 
