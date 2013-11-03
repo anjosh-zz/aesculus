@@ -3,9 +3,6 @@
 //
 //  A project template for using arbor.js
 //
-
-
-
 (function($){
 
   var Renderer = function(canvas){
@@ -52,8 +49,14 @@
           // pt2:  {x:#, y:#}  target position in screen coords
 
           // draw a line from pt1 to pt2
-          ctx.strokeStyle = "rgba(0,0,0, .333)"
-          ctx.lineWidth = 1
+          ctx.strokeStyle = "black"
+
+          if(edge.data.big) {
+            ctx.lineWidth = 3
+          } else {
+            ctx.lineWidth = 1
+          }
+
           ctx.beginPath()
           ctx.moveTo(pt1.x, pt1.y)
           ctx.lineTo(pt2.x, pt2.y)
@@ -84,9 +87,9 @@
           } else {
             ctx.fillStyle = 'red'
           }
- 
+
           ctx.fillRect(pt.x - w/2, pt.y - 7, w,14)
- 
+
           // draw the text
           if (label){
             ctx.font = "bold 11px Arial"
@@ -158,6 +161,7 @@
 
             return false
           },
+
           dragged:function(e, oldTakenState){
             var pos = $(canvas).offset();
             var s = arbor.Point(e.pageX-pos.left, e.pageY-pos.top)
@@ -166,13 +170,32 @@
               var p = particleSystem.fromScreen(s)
               dragged.node.p = p
             }
- 
-            dragging = true // Node is being dragged          
+
+            var edgesTo = particleSystem.getEdgesTo(dragged.node)
+            var edgesFrom = particleSystem.getEdgesFrom(dragged.node)
+
+            var i = 0;
+
+            while(i<edgesTo.length) {
+              edgesTo[i].data.big = true
+              i++;
+            }
+
+            i = 0;
+
+            while(i<edgesFrom.length) {
+              edgesFrom[i].data.big = true
+              i++;
+            }
+
+            dragging = true // Node is being dragged                   
 
             return false
           },
 
           dropped:function(e){
+            bigEdges = false;
+
             if (!dragging){ // If node is not being dragged, then colors can possibly change
               var locked = false; // Whether or not the node is locked to color change based on dependencies
               var i = 0; // Loop counter
@@ -207,6 +230,23 @@
               }
             }
 
+            var edgesTo = particleSystem.getEdgesTo(dragged.node)
+            var edgesFrom = particleSystem.getEdgesFrom(dragged.node)
+
+            var i = 0;
+
+            while(i<edgesTo.length) {
+              edgesTo[i].data.big = false
+              i++;
+            }
+
+            i = 0;
+
+            while(i<edgesFrom.length) {
+              edgesFrom[i].data.big = false
+              i++;
+            }
+
             if (dragged===null || dragged.node===undefined) return
             if (dragged.node !== null) dragged.node.fixed = false
             dragged.node.tempMass = 1000
@@ -225,7 +265,7 @@
       
     }
     return that
-  }    
+  }  
 
   $(document).ready(function(){
     var sys = arbor.ParticleSystem(0, 0, 0.5) // create the system with sensible repulsion/stiffness/friction
