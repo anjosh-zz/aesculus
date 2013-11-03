@@ -237,7 +237,7 @@
 
     sys.addNode('cse2221', {label: "CSE 2221: Software I", y: 1, x: 5, taken: false, canTake: false})
 
-    sys.addNode('math1661', {label: "MATH 1161.01: Accel Calc I", y: 1, x: 6, taken: false, canTake: false})
+    sys.addNode('math1161', {label: "MATH 1161.01: Accel Calc I", y: 1, x: 6, taken: false, canTake: false})
 
     sys.addNode('phys1250', {label: "PHYS 1250: Physics 1", y: 2, x: 4, taken: false, canTake: false})
 
@@ -266,8 +266,6 @@
     sys.addNode('engl2367', {label: "ENGL 2367: Writing II", y: 4, x: 5, taken: false, canTake: false})
 
     sys.addNode('cse2421', {label: "CSE 2421: Systems I", y: 4, x: 6, taken: false, canTake: false})
-
-    sys.addNode('cse2451', {label: "CSE 2451: Advanced C", y: 4, x: 7, taken: false, canTake: false})
 
     sys.addNode('cse2331', {label: "CSE 2331: Foundations II", y: 4, x: 8, taken: false, canTake: false})
 
@@ -325,8 +323,6 @@
 
     sys.addNode('cse5236', {label: "CSE 5236: Mobile Dev", y: 6, x: 10, taken: false, canTake: false})
 
-    sys.addNode('cse5234', {label: "CSE 5234: Distributed Computing", y: 6, x: 11, taken: false, canTake: false})
-
     sys.addNode('cse5526', {label: "CSE 5526: Neural Networks", y: 6, x: 12, taken: false, canTake: false})
 
     sys.addNode('cse5522', {label: "CSE 5522: AI II - Advanced Techniques", y: 6, x: 13, taken: false, canTake: false})
@@ -351,7 +347,7 @@
 
     sys.addNode('cse5911', {label: "CSE 5911: Software Apps", y: 7, x: 1, taken: false, canTake: false})
 
-    sys.addNode('cse5913', {label: "CSE 5913: Game Design & Dev", y: 7, x: 2, taken: false, canTake: false})
+    sys.addNode('cse5912', {label: "CSE 5912: Game Design & Dev", y: 7, x: 2, taken: false, canTake: false})
 
     sys.addNode('cse5913', {label: "CSE 5913: Animation", y: 7, x: 3, taken: false, canTake: false})
 
@@ -381,12 +377,12 @@
   sys.graft({
       nodes:{}, 
       edges:{
-        cse1223:{ cse2221:{}},
-        math161:{cse2321:{}, math2162:{}},
+        cse1223:{cse2221:{}},
+        math1161:{cse2321:{}, math2162:{}},
         math2162:{ece2000:{}},
         cse2221:{cse2231:{}, cse2321:{}, ece2000:{}},
-        cse2231:{cse2331:{}, cse2421:{}, cse2501:{}, cse3241:{}, cse3341:{}, cse3421:{}, cse390x:{},cse4251:{}, cse4252:{}, cse4253:{},cse4255:{},cse4254:{}, cse5361:{},cse5441:{}, cse5471:{}},
-        cse2321:{cse2331:{},cse2421:{}, cse2501:{}, cse3241:{}, cse390x:{}, cse5441:{}, cse5471:{}},
+        cse2231:{cse2331:{}, cse2421:{}, cse2501:{}, cse3241:{}, cse3341:{}, cse3421:{}, cse390x:{},cse4251:{}, cse4252:{}, cse4253:{},cse4255:{},cse4254:{}, cse5361:{},cse5441:{}, cse4471:{}},
+        cse2321:{cse2331:{}, cse2421:{}, cse2501:{}, cse3241:{}, cse390x:{}, cse5441:{}, cse4471:{}},
         cse2331:{cse2431:{}},
         cse2421:{cse2431:{}},
         phys1250:{ece2000:{}},
@@ -394,8 +390,8 @@
         engl2367:{cse2501:{}},
         engl1110:{engl2367:{}},
         cse2501:{cse5915:{}, cse5911:{}, cse5913:{}, cse5914:{}, cse5912:{}},
-        engr1181:{engr1182:{}},
-}
+        eng1181:{eng1182:{}},
+        }
 
     })
 
