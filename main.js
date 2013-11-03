@@ -117,7 +117,7 @@
             $(canvas).bind('mousemove', handler.dragged)
             $(window).bind('mouseup', handler.dropped)
 
-	    dragged.node.data.taken = !dragged.node.data.taken
+	          dragged.node.data.taken = !dragged.node.data.taken
 
 
             return false
@@ -130,7 +130,8 @@
               var p = particleSystem.fromScreen(s)
               dragged.node.p = p
             }
-	     dragged.node.data.taken = false
+	     
+            dragged.node.data.taken = false
 
 
             return false
@@ -158,20 +159,20 @@
   }    
 
   $(document).ready(function(){
-    var sys = arbor.ParticleSystem(1000, 600, 0.5) // create the system with sensible repulsion/stiffness/friction
+    var sys = arbor.ParticleSystem(0, 0, 0.5) // create the system with sensible repulsion/stiffness/friction
     sys.parameters({gravity:true}) // use center-gravity to make the graph settle nicely (ymmv)
     sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
 
     // add some nodes to the graph and watch it go...
-    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", mass:.25, taken: false})
-    sys.addNode('cse2221', {label: "CSE 2221: Software I", mass:.5, taken: false})
-    sys.addNode('cse2231', {label: "CSE 2231: Software II", mass:.25, taken: false})
-    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", mass:.25, taken: false})
-    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", mass:.25, taken: false})
-    sys.addNode('cse2421', {label: "CSE 2421: Systems I", mass:.25, taken: false})
-    sys.addNode('cse2431', {label: "CSE 2431: Systems II", mass:.25, taken: false})
-    sys.addNode('ece2000', {label: "ECE 2000: Electrical and Computer Engineering I", mass:.25, taken: false})
-    sys.addNode('ece2100', {label: "ECE 2100: Electrical and Computer Engineering II", mass:.25, taken: false})
+    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", y: 0, x: 0, taken: false})
+    sys.addNode('cse2221', {label: "CSE 2221: Software I", y: 1, x: 0, taken: false})
+    sys.addNode('cse2231', {label: "CSE 2231: Software II", y: 2, x: 0, taken: false})
+    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", y: 2, x: -1, taken: false})
+    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", y: 3, x: -1, taken: false})
+    sys.addNode('cse2421', {label: "CSE 2421: Systems I", y: 3, x: 0, taken: false})
+    sys.addNode('cse2431', {label: "CSE 2431: Systems II", y: 4, x: 0, taken: false})
+    sys.addNode('ece2000', {label: "ECE 2000: Electrical and Computer Engineering I", y: 2, x: 1, taken: false})
+    sys.addNode('ece2100', {label: "ECE 2100: Electrical and Computer Engineering II", y: 3, x: 1, taken: false})
 
     sys.addEdge('cse1223', 'cse2221')
     sys.addEdge('cse2221', 'cse2231')
