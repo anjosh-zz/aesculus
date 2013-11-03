@@ -158,15 +158,15 @@
     sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
 
     // add some nodes to the graph and watch it go...
-    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", mass:.25, taken: true})
-    sys.addNode('cse2221', {label: "CSE 2221: Software I", mass:.5})
-    sys.addNode('cse2231', {label: "CSE 2231: Software II", mass:.25})
-    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", mass:.25})
-    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", mass:.25})
-    sys.addNode('cse2421', {label: "CSE 2421: Systems I", mass:.25})
-    sys.addNode('cse2431', {label: "CSE 2431: Systems II", mass:.25})
-    sys.addNode('ece2000', {label: "ECE 2000: Electrical and Computer Engineering I", mass:.25})
-    sys.addNode('ece2100', {label: "ECE 2100: Electrical and Computer Engineering II", mass:.25})
+    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", mass:.25, taken: false})
+    sys.addNode('cse2221', {label: "CSE 2221: Software I", mass:.5, taken: false})
+    sys.addNode('cse2231', {label: "CSE 2231: Software II", mass:.25, taken: false})
+    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", mass:.25, taken: false})
+    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", mass:.25, taken: false})
+    sys.addNode('cse2421', {label: "CSE 2421: Systems I", mass:.25, taken: false})
+    sys.addNode('cse2431', {label: "CSE 2431: Systems II", mass:.25, taken: false})
+    sys.addNode('ece2000', {label: "ECE 2000: Electrical and Computer Engineering I", mass:.25, taken: false})
+    sys.addNode('ece2100', {label: "ECE 2100: Electrical and Computer Engineering II", mass:.25, taken: false})
 
     sys.addEdge('cse1223', 'cse2221')
     sys.addEdge('cse2221', 'cse2231')
