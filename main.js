@@ -43,6 +43,42 @@
         ctx.fillStyle = "white"
         ctx.fillRect(0,0, canvas.width, canvas.height)
         
+        ctx.fillStyle = "gray"
+
+        ctx.fillRect(200, 100, 50, 50)
+
+        // draw the text
+        ctx.font = "bold 48px Arial"
+        ctx.textAlign = "center"
+
+        ctx.fillStyle = "#000000"            
+
+        ctx.fillText("Taken", 325, 145)
+
+        ctx.fillStyle = "red"
+
+        ctx.fillRect(200, 200, 50, 50)
+
+        // draw the text
+        ctx.font = "bold 48px Arial"
+        ctx.textAlign = "left"
+
+        ctx.fillStyle = "#000000"            
+
+        ctx.fillText("Can't Take", 255, 245)
+
+        ctx.fillStyle = "green"
+
+        ctx.fillRect(200, 300, 50, 50)
+
+        // draw the text
+        ctx.font = "bold 48px Arial"
+        ctx.textAlign = "left"
+
+        ctx.fillStyle = "#000000"            
+
+        ctx.fillText("Can Take", 255, 345)
+
         particleSystem.eachEdge(function(edge, pt1, pt2){
           // edge: {source:Node, target:Node, length:#, data:{}}
           // pt1:  {x:#, y:#}  source position in screen coords
@@ -68,7 +104,6 @@
           // node: {mass:#, p:{x,y}, name:"", data:{}}
           // pt:   {x:#, y:#}  node position in screen coords
          
- 
           // determine the box size and round off the coords if we'll be
           // drawing a text label (awful alignment jitter otherwise...)
           var w = ctx.measureText(node.data.label||"").width + 6
@@ -76,7 +111,7 @@
           if (!(label||"").match(/^[ \t]*$/)){
             pt.x = Math.floor(pt.x)
             pt.y = Math.floor(pt.y)
-          }else{
+          } else{
             label = null
           }
 
@@ -101,7 +136,7 @@
  
             ctx.fillText(label||"", pt.x, pt.y+4)
           }
-        })            
+        })         
       },
       
      findNextClasses:function(node) {
@@ -273,145 +308,145 @@
     sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
 
     // add some nodes to the graph and watch it go...
-    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", y: 0, x: 5, taken: false, canTake: false})
+    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", y: 0, x: 6, taken: false, canTake: true})
 
-    sys.addNode('cse2221', {label: "CSE 2221: Software I", y: 1, x: 5, taken: false, canTake: false})
+    sys.addNode('cse2221', {label: "CSE 2221: Software I", y: 1, x: 6, taken: false, canTake: false})
 
-    sys.addNode('math1161', {label: "MATH 1161.01: Accel Calc I", y: 1, x: 6, taken: false, canTake: false})
+    sys.addNode('math1161', {label: "MATH 1161.01: Accel Calc I", y: 1, x: 7, taken: false, canTake: true})
 
-    sys.addNode('phys1250', {label: "PHYS 1250: Physics 1", y: 2, x: 4, taken: false, canTake: false})
+    sys.addNode('phys1250', {label: "PHYS 1250: Physics 1", y: 2, x: 5, taken: false, canTake: false})
 
-    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", y: 2, x: 5, taken: false, canTake: false})
+    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", y: 2, x: 6, taken: false, canTake: false})
 
-    sys.addNode('eng1181', {label: "ENG 1181: Fund Eng I", y: 2, x: 6, taken: false, canTake: false})
+    sys.addNode('eng1181', {label: "ENG 1181: Fund Eng I", y: 2, x: 7, taken: false, canTake: true})
 
-    sys.addNode('math2162', {label: "MATH 2162.01: Accel Calc II", y: 2, x: 7, taken: false, canTake: false})
+    sys.addNode('math2162', {label: "MATH 2162.01: Accel Calc II", y: 2, x: 8, taken: false, canTake: false})
 
     sys.addNode('ece2000', {label: "ECE 2000: ECE I", y: 3, x: 4, taken: false, canTake: false})
 
-    sys.addNode('engl1110', {label: "ENGL 1100.XX: Writing I", y: 3, x: 5, taken: false, canTake: false})
+    sys.addNode('engl1110', {label: "ENGL 1100.XX: Writing I", y: 3, x: 5, taken: false, canTake: true})
 
     sys.addNode('cse2231', {label: "CSE 2231: Software II", y: 3, x: 6, taken: false, canTake: false})
 
     sys.addNode('eng1182', {label: "ENG 1182: Fund Eng II", y: 3, x: 7, taken: false, canTake: false})
 
-    sys.addNode('stat4201', {label: "STAT 4201: Intro to Mathematical Statistics I", y: 3, x: 14, taken: false, canTake: false})
+    sys.addNode('stat4201', {label: "STAT 4201: Intro to Mathematical Statistics I", y: 3, x: 8, taken: false, canTake: false})
 
-    sys.addNode('math2568', {label: "MATH 2568: Linear Algebra", y: 3, x: 18, taken: false, canTake: false})
+    sys.addNode('math2568', {label: "MATH 2568: Linear Algebra", y: 3, x: 9, taken: false, canTake: false})
 
-    sys.addNode('stat3470', {label: "STAT 3470: Prob & Stats", y: 3, x: 20, taken: false, canTake: false})
+    sys.addNode('stat3470', {label: "STAT 3470: Prob & Stats", y: 3, x: 10, taken: false, canTake: false})
 
-    sys.addNode('ece2100', {label: "ECE 2100: ECE II", y: 4, x: 4, taken: false, canTake: false})
+    sys.addNode('ece2100', {label: "ECE 2100: ECE II", y: 4, x: 2, taken: false, canTake: false})
 
-    sys.addNode('engl2367', {label: "ENGL 2367: Writing II", y: 4, x: 5, taken: false, canTake: false})
+    sys.addNode('engl2367', {label: "ENGL 2367: Writing II", y: 4, x: 3, taken: false, canTake: false})
 
-    sys.addNode('cse2421', {label: "CSE 2421: Systems I", y: 4, x: 6, taken: false, canTake: false})
+    sys.addNode('cse2421', {label: "CSE 2421: Systems I", y: 4, x: 4, taken: false, canTake: false})
 
-    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", y: 4, x: 8, taken: false, canTake: false})
+    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", y: 4, x: 5, taken: false, canTake: false})
 
-    sys.addNode('cse4254', {label: "CSE 4254: Lisp", y: 4, x: 9, taken: false, canTake: false})
+    sys.addNode('cse4254', {label: "CSE 4254: Lisp", y: 4, x: 6, taken: false, canTake: false})
 
-    sys.addNode('cse4251', {label: "CSE 4251: UNIX", y: 4, x: 10, taken: false, canTake: false})
+    sys.addNode('cse4251', {label: "CSE 4251: UNIX", y: 4, x: 7, taken: false, canTake: false})
 
-    sys.addNode('cse4253', {label: "CSE 4253: C#", y: 4, x: 12, taken: false, canTake: false})
+    sys.addNode('cse4253', {label: "CSE 4253: C#", y: 4, x: 8, taken: false, canTake: false})
 
-    sys.addNode('cse4252', {label: "CSE 4252: C++", y: 4, x: 13, taken: false, canTake: false})
+    sys.addNode('cse4252', {label: "CSE 4252: C++", y: 4, x: 9, taken: false, canTake: false})
 
-    sys.addNode('cse4471', {label: "CSE 4471: Information Security", y: 4, x: 14, taken: false, canTake: false})
+    sys.addNode('cse4471', {label: "CSE 4471: Information Security", y: 4, x: 10, taken: false, canTake: false})
 
-    sys.addNode('cse5361', {label: "CSE 5361: Numerical Methods", y: 4, x: 15, taken: false, canTake: false})
+    sys.addNode('cse5361', {label: "CSE 5361: Numerical Methods", y: 4, x: 11, taken: false, canTake: false})
 
-    sys.addNode('cse5543', {label: "CSE 5543: Geometric Modeling", y: 4, x: 16, taken: false, canTake: false})
+    sys.addNode('cse5543', {label: "CSE 5543: Geometric Modeling", y: 4, x: 12, taken: false, canTake: false})
 
     sys.addNode('cse2501', {label: "CSE 2501: Prof. Ethics", y: 5, x: 2, taken: false, canTake: false})
 
-    sys.addNode('cse3421', {label: "CSE 3421: Systems - Architecture", y: 5, x: 5, taken: false, canTake: false})
+    sys.addNode('cse3421', {label: "CSE 3421: Systems - Architecture", y: 5, x: 3, taken: false, canTake: false})
 
-    sys.addNode('cse3321', {label: "CSE 3321: Formal Langs", y: 5, x: 6, taken: false, canTake: false})
+    sys.addNode('cse3321', {label: "CSE 3321: Formal Langs", y: 5, x: 4, taken: false, canTake: false})
 
-    sys.addNode('cse390x', {label: "CSE 390X: Project", y: 5, x: 7, taken: false, canTake: false})
+    sys.addNode('cse390x', {label: "CSE 390X: Project", y: 5, x: 5, taken: false, canTake: false})
 
-    sys.addNode('cse3521', {label: "CSE 3521: Applications - AI", y: 5, x: 8, taken: false, canTake: false})
+    sys.addNode('cse3521', {label: "CSE 3521: Applications - AI", y: 5, x: 6, taken: false, canTake: false})
 
-    sys.addNode('cse2431', {label: "CSE 2431: Systems II", y: 5, x: 9, taken: false, canTake: false})
+    sys.addNode('cse2431', {label: "CSE 2431: Systems II", y: 5, x: 7, taken: false, canTake: false})
 
-    sys.addNode('cse5432', {label: "CSE 5432: Mobile Handsets & Networking", y: 5, x: 10, taken: false, canTake: false})
+    sys.addNode('cse5432', {label: "CSE 5432: Mobile Handsets & Networking", y: 5, x: 8, taken: false, canTake: false})
 
-    sys.addNode('cse5245', {label: "CSE 5245: Intro to Network Science", y: 5, x: 11, taken: false, canTake: false})
+    sys.addNode('cse5245', {label: "CSE 5245: Intro to Network Science", y: 5, x: 9, taken: false, canTake: false})
 
-    sys.addNode('cse5524', {label: "CSE 5524: Computer Vision for Human-Computer Interaction", y: 5, x: 12, taken: false, canTake: false})
+    sys.addNode('cse5524', {label: "CSE 5524: Computer Vision for Human-Computer Interaction", y: 5, x: 10, taken: false, canTake: false})
 
-    sys.addNode('cse4255', {label: "CSE 4255: Perl", y: 5, x: 13, taken: false, canTake: false})
+    sys.addNode('cse4255', {label: "CSE 4255: Perl", y: 5, x: 11, taken: false, canTake: false})
 
-    sys.addNode('cse5441', {label: "CSE 5441: Intro to Parallel Computing", y: 5, x: 14, taken: false, canTake: false})
+    sys.addNode('cse5441', {label: "CSE 5441: Intro to Parallel Computing", y: 5, x: 12, taken: false, canTake: false})
 
-    sys.addNode('cse5544', {label: "CSE 5544: Scientific Visualization", y: 5, x: 15, taken: false, canTake: false})
+    sys.addNode('cse5544', {label: "CSE 5544: Scientific Visualization", y: 5, x: 13, taken: false, canTake: false})
 
-    sys.addNode('math3345', {label: "MATH 3345: Fnds of Higher Math", y: 5, x: 20, taken: false, canTake: false})
+    sys.addNode('math3345', {label: "MATH 3345: Fnds of Higher Math", y: 5, x: 14, taken: false, canTake: false})
 
-    sys.addNode('cse5914', {label: "CSE 5914: Knowledge-based Systems", y: 6, x: 2, taken: false, canTake: false})
+    sys.addNode('cse5914', {label: "CSE 5914: Knowledge-based Systems", y: 6, x: 1, taken: false, canTake: false})
 
-    sys.addNode('cse3241', {label: "CSE 3241: Databases", y: 6, x: 3, taken: false, canTake: false})
+    sys.addNode('cse3241', {label: "CSE 3241: Databases", y: 6, x: 2, taken: false, canTake: false})
 
-    sys.addNode('cse3231', {label: "CSE 3231: Software Eng", y: 6, x: 4, taken: false, canTake: false})
+    sys.addNode('cse3231', {label: "CSE 3231: Software Eng", y: 6, x: 3, taken: false, canTake: false})
 
-    sys.addNode('cse3461', {label: "CSE 3461: Systems - Networking", y: 6, x:5, taken: false, canTake: false})
+    sys.addNode('cse3461', {label: "CSE 3461: Systems - Networking", y: 6, x: 4, taken: false, canTake: false})
 
-    sys.addNode('cse3341', {label: "CSE 3341: Prog. Langs", y: 6, x: 6, taken: false, canTake: false})
+    sys.addNode('cse3341', {label: "CSE 3341: Prog. Langs", y: 6, x: 5, taken: false, canTake: false})
 
-    sys.addNode('cse3541', {label: "CSE 3541: Applications - Graphics", y: 6, x: 8, taken: false, canTake: false})
+    sys.addNode('cse3541', {label: "CSE 3541: Applications - Graphics", y: 6, x: 6, taken: false, canTake: false})
 
-    sys.addNode('cse5236', {label: "CSE 5236: Mobile Dev", y: 6, x: 10, taken: false, canTake: false})
+    sys.addNode('cse5236', {label: "CSE 5236: Mobile Dev", y: 6, x: 7, taken: false, canTake: false})
 
-    sys.addNode('cse5526', {label: "CSE 5526: Neural Networks", y: 6, x: 12, taken: false, canTake: false})
+    sys.addNode('cse5526', {label: "CSE 5526: Neural Networks", y: 6, x: 8, taken: false, canTake: false})
 
-    sys.addNode('cse5522', {label: "CSE 5522: AI II - Advanced Techniques", y: 6, x: 13, taken: false, canTake: false})
+    sys.addNode('cse5522', {label: "CSE 5522: AI II - Advanced Techniques", y: 6, x: 9, taken: false, canTake: false})
 
-    sys.addNode('cse5434', {label: "CSE 5434: Comparative Operating Systems", y: 6, x: 14, taken: false, canTake: false})
+    sys.addNode('cse5434', {label: "CSE 5434: Comparative Operating Systems", y: 6, x: 10, taken: false, canTake: false})
 
-    sys.addNode('cse5234', {label: "CSE 5234: Distributed Enterprise Computing", y: 6, x: 15, taken: false, canTake: false})
+    sys.addNode('cse5234', {label: "CSE 5234: Distributed Enterprise Computing", y: 6, x: 11, taken: false, canTake: false})
 
-    sys.addNode('cse5433', {label: "CSE 5433: Operating Systems Lab", y: 6, x: 16, taken: false, canTake: false})
+    sys.addNode('cse5433', {label: "CSE 5433: Operating Systems Lab", y: 6, x: 12, taken: false, canTake: false})
 
-    sys.addNode('cse5523', {label: "CSE 5523: Machine Learning", y: 6, x: 17, taken: false, canTake: false})
+    sys.addNode('cse5523', {label: "CSE 5523: Machine Learning", y: 6, x: 13, taken: false, canTake: false})
 
-    sys.addNode('cse5542', {label: "CSE 5542: Real-Time Rendering", y: 6, x: 18, taken: false, canTake: false})
+    sys.addNode('cse5542', {label: "CSE 5542: Real-Time Rendering", y: 6, x: 14, taken: false, canTake: false})
 
-    sys.addNode('cse5341', {label: "CSE 5341: Principles of Languages", y: 6, x: 19, taken: false, canTake: false})
+    sys.addNode('cse5341', {label: "CSE 5341: Principles of Languages", y: 6, x: 15, taken: false, canTake: false})
 
-    sys.addNode('cse5525', {label: "CSE 5525: Fndns of Speech Processing", y: 6, x: 20, taken: false, canTake: false})
+    sys.addNode('cse5525', {label: "CSE 5525: Fndns of Speech Processing", y: 6, x: 16, taken: false, canTake: false})
 
-    sys.addNode('math4580', {label: "MATH 4580: Abstract Algebra I", y: 6, x: 21, taken: false, canTake: false})
+    sys.addNode('math4580', {label: "MATH 4580: Abstract Algebra I", y: 6, x: 17, taken: false, canTake: false})
 
-    sys.addNode('cse5915', {label: "CSE 5915: Information Systems", y: 7, x: 0, taken: false, canTake: false})
+    sys.addNode('cse5915', {label: "CSE 5915: Information Systems", y: 7, x: 1, taken: false, canTake: false})
 
-    sys.addNode('cse5911', {label: "CSE 5911: Software Apps", y: 7, x: 1, taken: false, canTake: false})
+    sys.addNode('cse5911', {label: "CSE 5911: Software Apps", y: 7, x: 2, taken: false, canTake: false})
 
-    sys.addNode('cse5912', {label: "CSE 5912: Game Design & Dev", y: 7, x: 2, taken: false, canTake: false})
+    sys.addNode('cse5912', {label: "CSE 5912: Game Design & Dev", y: 7, x: 3, taken: false, canTake: false})
 
-    sys.addNode('cse5913', {label: "CSE 5913: Animation", y: 7, x: 3, taken: false, canTake: false})
+    sys.addNode('cse5913', {label: "CSE 5913: Animation", y: 7, x: 4, taken: false, canTake: false})
 
-    sys.addNode('cse5242', {label: "CSE 5242: Advanced Database Management Systems", y: 7, x: 10, taken: false, canTake: false})
+    sys.addNode('cse5242', {label: "CSE 5242: Advanced Database Management Systems", y: 7, x: 5, taken: false, canTake: false})
 
-    sys.addNode('cse5473', {label: "CSE 5473: Network Security", y: 7, x: 11, taken: false, canTake: false})
+    sys.addNode('cse5473', {label: "CSE 5473: Network Security", y: 7, x: 6, taken: false, canTake: false})
 
-    sys.addNode('cse5463', {label: "CSE 5463: Wireless Networking", y: 7, x: 12, taken: false, canTake: false})
+    sys.addNode('cse5463', {label: "CSE 5463: Wireless Networking", y: 7, x: 7, taken: false, canTake: false})
 
-    sys.addNode('cse5462', {label: "CSE 5462: Network Programming", y: 7, x: 13, taken: false, canTake: false})
+    sys.addNode('cse5462', {label: "CSE 5462: Network Programming", y: 7, x: 8, taken: false, canTake: false})
 
-    sys.addNode('cse3232', {label: "CSE 3232: Software Reqmts Analysis", y: 7, x: 14, taken: false, canTake: false})
+    sys.addNode('cse3232', {label: "CSE 3232: Software Reqmts Analysis", y: 7, x: 9, taken: false, canTake: false})
 
-    sys.addNode('cse5545', {label: "CSE 5545: Advanced Computer Graphics", y: 7, x: 15, taken: false, canTake: false})
+    sys.addNode('cse5545', {label: "CSE 5545: Advanced Computer Graphics", y: 7, x: 10, taken: false, canTake: false})
 
-    sys.addNode('cse5472', {label: "CSE 5472: Information Security Projects", y: 7, x: 16, taken: false, canTake: false})
+    sys.addNode('cse5472', {label: "CSE 5472: Information Security Projects", y: 7, x: 11, taken: false, canTake: false})
 
-    sys.addNode('cse5343', {label: "CSE 5343: Compiler Design & Implementation", y: 7, x: 17, taken: false, canTake: false})
+    sys.addNode('cse5343', {label: "CSE 5343: Compiler Design & Implementation", y: 7, x: 12, taken: false, canTake: false})
 
-    sys.addNode('cse5345', {label: "CSE 5345: Compilers", y: 7, x: 18, taken: false, canTake: false})
+    sys.addNode('cse5345', {label: "CSE 5345: Compilers", y: 7, x: 13, taken: false, canTake: false})
 
-    sys.addNode('cse5243', {label: "CSE 5243: Intro to Data Mining", y: 7, x: 19, taken: false, canTake: false})
+    sys.addNode('cse5243', {label: "CSE 5243: Intro to Data Mining", y: 7, x: 14, taken: false, canTake: false})
 
-    sys.addNode('cse5351', {label: "CSE 5351: Cryptography", y: 7, x: 21, taken: false, canTake: false})
+    sys.addNode('cse5351', {label: "CSE 5351: Cryptography", y: 7, x: 15, taken: false, canTake: false})
 
       sys.graft({
         nodes:{
@@ -419,11 +454,11 @@
         },
         edges:{
             cse1223:{cse2221:{}},
-            math1161:{cse2321:{}, math2162:{}},
-            math2162:{ece2000:{}, stat4201:{}},
+            math1161:{cse2321:{}, math2162:{}, stat3470:{}, math3345:{}},
+            math2162:{ece2000:{}, stat4201:{}, math3345:{}, math2568:{}},
             cse2221:{cse2231:{}, cse2321:{}, ece2000:{}},
-            cse2231:{cse2331:{}, cse2421:{}, cse2501:{}, cse3241:{}, cse3341:{}, cse3421:{}, cse390x:{},cse4251:{}, cse4252:{}, cse4253:{},cse4255:{},cse4254:{}, cse5361:{},cse5441:{}},
-            cse2321:{cse2331:{},cse2421:{}, cse2501:{}, cse3241:{}, cse390x:{}, cse5441:{}},
+            cse2231:{cse2331:{}, cse2421:{}, cse2501:{}, cse3241:{}, cse3341:{}, cse3421:{}, cse390x:{},cse4251:{}, cse4252:{}, cse4253:{},cse4255:{},cse4254:{}, cse4471:{}, cse5361:{},cse5441:{}},
+            cse2321:{cse2331:{},cse2421:{}, cse2501:{}, cse3241:{}, cse390x:{}, cse4471:{}, cse5441:{}},
             cse2331:{cse2431:{},cse3321:{},cse3341:{},cse3521:{},cse5245:{},cse5524:{},cse4255:{},cse5341:{},cse5351:{},cse5243:{}},
             cse2421:{cse2431:{},cse3421:{},cse3461:{},cse390x:{},cse5432:{},cse4255:{},cse5441:{},cse5341:{}},
             cse2431:{ cse5234:{},
@@ -432,6 +467,7 @@
             phys1250:{ece2000:{}},
             ece2000:{ece2100:{}, cse3421:{}},
             engl2367:{cse2501:{},cse390x:{}},
+            cse390x:{cse5236:{}, cse3231:{}, cse3341:{}, cse5915:{}, cse5911:{}, cse5912:{}, cse5913:{}, cse3541:{}, cse3232:{}, cse5236:{}, cse5472:{}, cse5343:{}, cse5345:{}},
             engl1110:{engl2367:{}},
             cse2501:{cse5915:{}, cse5911:{}, cse5913:{}, cse5914:{}, cse5912:{}},
             eng1181:{eng1182:{}},
@@ -440,6 +476,7 @@
             cse3461:{cse5473:{},cse5463:{},cse5462:{},cse5472:{}},
             cse3341:{cse5343:{},cse5345:{}},
             cse3541:{cse5912:{},cse5913:{},cse5545:{}},
+            cse5361:{cse5544:{}},
             cse3521:{cse5914:{},cse5526:{},cse5522:{},cse5523:{},cse5525:{}},
             math2568:{cse5361:{},cse5543:{},cse5441:{},cse5542:{},math4580:{}},
             stat3470:{cse5525:{},cse5351:{},cse5542:{},cse2331:{}},
