@@ -76,15 +76,13 @@
           }else{
             label = null
           }
-         
-          if(node.data.canTake || node.data.taken) {
-              if (node.data.taken) {
-                ctx.fillStyle = 'red'
-              } else {
-                ctx.fillStyle = 'green'
-              }
+
+          if(node.data.taken) {
+              ctx.fillStyle = 'gray'
+          } else if (node.data.canTake) {
+              ctx.fillStyle = 'green'
           } else {
-            ctx.fillStyle = 'gray'
+            ctx.fillStyle = 'red'
           }
  
           ctx.fillRect(pt.x - w/2, pt.y - 7, w,14)
@@ -104,25 +102,30 @@
       },
       
      findNextClasses:function(node) {
-          var outgoing = sys.getEdgesFrom(node)
+          var outgoing = particleSystem.getEdgesFrom(node)
           var i = 0
 
           while (i < outgoing.length) {
-              nextNode = outgoing[i]
+              var nextNode = outgoing[i].target
 
-              var prereqs = getEdgesTo(nextNode)
+              var prereqs = particleSystem.getEdgesTo(nextNode)
               var j = 0
 
               while (j < prereqs.length) {
-                  if (!prereqs[i].taken) {
+                  if (!prereqs[j].source.data.taken) {
                       break
                   }
                   j++
               }
 
               if (j === prereqs.length) {
-                  nextNode.canTake = true
+                  nextNode.data.canTake = true
+              } else {
+                  nextNode.data.canTake = false
               }
+              console.log(outgoing)
+              console.log(prereqs)
+              console.log(nextNode.data.canTake)
 
               i++
 
@@ -132,6 +135,8 @@
       initMouseHandling:function(){
         // no-nonsense drag and drop (thanks springy.js)
         var dragged = null;
+        var dragging = false;
+        
 
         // set up a handler object that will initially listen for mousedowns then
         // for moves and mouseups while dragging
@@ -150,10 +155,8 @@
             $(canvas).bind('mousemove', handler.dragged)
             $(window).bind('mouseup', handler.dropped)
 
-	    dragged.node.data.taken = !dragged.node.data.taken
-        findNextClasses(dragged.node)
-
-
+	    
+            dragging = false            
 
             return false
           },
@@ -165,14 +168,23 @@
               var p = particleSystem.fromScreen(s)
               dragged.node.p = p
             }
-	     dragged.node.data.taken = oldTakenState
-         findNextClasses(dragged.node)
-
+ 
+            dragging = true            
 
             return false
           },
 
           dropped:function(e){
+
+            if (dragging){
+              dragged.node.data.taken = dragged.node.data.taken
+            } else {
+              dragged.node.data.taken = !dragged.node.data.taken
+              that.findNextClasses(dragged.node)
+
+            }
+
+            
             if (dragged===null || dragged.node===undefined) return
             if (dragged.node !== null) dragged.node.fixed = false
             dragged.node.tempMass = 1000
@@ -194,20 +206,20 @@
   }    
 
   $(document).ready(function(){
-    var sys = arbor.ParticleSystem(1000, 600, 0.5) // create the system with sensible repulsion/stiffness/friction
+    var sys = arbor.ParticleSystem(0, 0, 0.5) // create the system with sensible repulsion/stiffness/friction
     sys.parameters({gravity:true}) // use center-gravity to make the graph settle nicely (ymmv)
     sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
 
     // add some nodes to the graph and watch it go...
-    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", mass:.25, taken: false, canTake: false})
-    sys.addNode('cse2221', {label: "CSE 2221: Software I", mass:.5, taken: false, canTake : false})
-    sys.addNode('cse2231', {label: "CSE 2231: Software II", mass:.25, taken: false, canTake: false})
-    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", mass:.25, taken: false, canTake: false})
-    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", mass:.25, taken: false, canTake: false})
-    sys.addNode('cse2421', {label: "CSE 2421: Systems I", mass:.25, taken: false, canTake : false})
-    sys.addNode('cse2431', {label: "CSE 2431: Systems II", mass:.25, taken: false, canTake: false})
-    sys.addNode('ece2000', {label: "ECE 2000: Electrical and Computer Engineering I", mass:.25, taken: false, canTake: false})
-    sys.addNode('ece2100', {label: "ECE 2100: Electrical and Computer Engineering II", mass:.25, taken: false, canTake: false})
+    sys.addNode('cse1223', {label: "CSE 1223: Intro to Java", y: 0, x: 0, taken: false, canTake: false})
+    sys.addNode('cse2221', {label: "CSE 2221: Software I", y: 1, x: 0, taken: false, canTake : false})
+    sys.addNode('cse2231', {label: "CSE 2231: Software II", y: 2, x: 0, taken: false, canTake: false})
+    sys.addNode('cse2321', {label: "CSE 2321: Foundations I", y: 2, x: -1, taken: false, canTake: false})
+    sys.addNode('cse2331', {label: "CSE 2331: Foundations II", y: 3, x: -1, taken: false, canTake: false})
+    sys.addNode('cse2421', {label: "CSE 2421: Systems I", y: 3, x: 0, taken: false, canTake : false})
+    sys.addNode('cse2431', {label: "CSE 2431: Systems II", y: 4, x: 0, taken: false, canTake: false})
+    sys.addNode('ece2000', {label: "ECE 2000: Electrical and Computer Engineering I", y: 2, x: 1, taken: false, canTake: false})
+    sys.addNode('ece2100', {label: "ECE 2100: Electrical and Computer Engineering II", y: 3, x: 1, taken: false, canTake: false})
 
     sys.addEdge('cse1223', 'cse2221')
     sys.addEdge('cse2221', 'cse2231')
