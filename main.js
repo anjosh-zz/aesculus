@@ -117,6 +117,9 @@
             $(canvas).bind('mousemove', handler.dragged)
             $(window).bind('mouseup', handler.dropped)
 
+	    dragged.node.data.taken = !dragged.node.data.taken
+
+
             return false
           },
           dragged:function(e){
@@ -127,6 +130,8 @@
               var p = particleSystem.fromScreen(s)
               dragged.node.p = p
             }
+	     dragged.node.data.taken = false
+
 
             return false
           },
