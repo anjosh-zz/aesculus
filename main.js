@@ -67,7 +67,7 @@
 
         ctx.fillText("Can't Take", 255, 245)
 
-        ctx.fillStyle = "green"
+        ctx.fillStyle = "blue"
 
         ctx.fillRect(200, 300, 50, 50)
 
@@ -87,9 +87,15 @@
           // draw a line from pt1 to pt2
           ctx.strokeStyle = "black"
 
-          if(edge.data.big) {
-            ctx.lineWidth = 3
-          } else {
+          if(edge.data.bigP) {
+            ctx.lineWidth = 4
+      
+      ctx.strokeStyle = "yellow"
+          } else if(edge.data.bigC) {
+      ctx.lineWidth = 3
+      
+      ctx.strokeStyle = "green"
+      } else {
             ctx.lineWidth = 1
           }
 
@@ -118,7 +124,7 @@
           if(node.data.taken) {
               ctx.fillStyle = 'gray'
           } else if (node.data.canTake) {
-              ctx.fillStyle = 'green'
+              ctx.fillStyle = 'blue'
           } else {
             ctx.fillStyle = 'red'
           }
@@ -212,14 +218,14 @@
             var i = 0;
 
             while(i<edgesTo.length) {
-              edgesTo[i].data.big = true
+              edgesTo[i].data.bigP = true
               i++;
             }
 
             i = 0;
 
             while(i<edgesFrom.length) {
-              edgesFrom[i].data.big = true
+              edgesFrom[i].data.bigC = true
               i++;
             }
 
@@ -229,8 +235,6 @@
           },
 
           dropped:function(e){
-            bigEdges = false;
-
             if (!dragging){ // If node is not being dragged, then colors can possibly change
               var locked = false; // Whether or not the node is locked to color change based on dependencies
               var i = 0; // Loop counter
@@ -271,14 +275,14 @@
             var i = 0;
 
             while(i<edgesTo.length) {
-              edgesTo[i].data.big = false
+              edgesTo[i].data.bigP = false
               i++;
             }
 
             i = 0;
 
             while(i<edgesFrom.length) {
-              edgesFrom[i].data.big = false
+              edgesFrom[i].data.bigC = false
               i++;
             }
 
@@ -314,7 +318,7 @@
 
     sys.addNode('math1161', {label: "MATH 1161.01: Accel Calc I", y: 1, x: 7, taken: false, canTake: true})
 
-    sys.addNode('phys1250', {label: "PHYS 1250: Physics 1", y: 2, x: 5, taken: false, canTake: false})
+    sys.addNode('phys1250', {label: "PHYS 1250: Physics 1", y: 1, x: 4, taken: false, canTake: true})
 
     sys.addNode('cse2321', {label: "CSE 2321: Foundations I", y: 2, x: 6, taken: false, canTake: false})
 
@@ -324,7 +328,7 @@
 
     sys.addNode('ece2000', {label: "ECE 2000: ECE I", y: 3, x: 4, taken: false, canTake: false})
 
-    sys.addNode('engl1110', {label: "ENGL 1100.XX: Writing I", y: 3, x: 5, taken: false, canTake: true})
+    sys.addNode('engl1110', {label: "ENGL 1100.XX: Writing I", y: 2, x: 3, taken: false, canTake: true})
 
     sys.addNode('cse2231', {label: "CSE 2231: Software II", y: 3, x: 6, taken: false, canTake: false})
 
@@ -504,4 +508,3 @@
   })
 
 })(this.jQuery)
-
